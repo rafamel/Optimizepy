@@ -13,7 +13,7 @@ Tests all possible portfolio allocations and determines which one had the best S
 	+ numpy
 	+ pandas
 
-## allocation_op(symbols, exchange, allow_short, days = None, filter_symbols = 5, data_allocate = None, dt_start = None, dt_end = None)
+## allocation_op(symbols, exchange, allow_short, days, filter_symbols, data_allocate, dt_start, dt_end)
 **File: allocation_sharpe_optimizer.py**
 
 > Tests all possible portfolio allocations for **symbols** and determines which one had the **best Sharpe ratio** for the period [today - *days*] to today _or_ from *dt_start* to *dt_end*.
@@ -42,7 +42,7 @@ Tests all possible portfolio allocations and determines which one had the best S
 
 - dt_start and dt_end: They might be used **instead** of *days* to compute the best allocation for some range of dates ending in the past (not for the day the computation is made, but before).
 
-## backtester(symbols, exchange, allow_short, days_backwards, days_forward, filter_symbols = 5)
+## backtester(symbols, exchange, allow_short, days_backwards, days_forward, filter_symbols)
 **File: backtester.py**
 
 > Backtest of allocation_op. It will use all historical data available for the symbols. It will save the the cumulative returns, the returns per period, and the sharpe ratio of the portfolio, in a csv file.
