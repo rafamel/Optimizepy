@@ -8,7 +8,7 @@ import simulate_portfolio_allocation as smlt
 import all_permutes as permutes
 
 
-#Allow to diable printing allocation_sharpe_optimizer
+#Allow to disable printing allocation_sharpe_optimizer
 class NullDevice():
     def write(self, s):
         pass    
@@ -20,10 +20,7 @@ def backtester(symbols, exchange, allow_short, days_backwards, days_forward, fil
         running allocation_sharpe_optimizer and only choose and try different allocations for those with the highest
         sharpe. 0 to deactivate.
     '''
-    # Some problems with symbols being modified by allocation_op. Why does it access this scoop from within that function? that's beneath me
-    # but after running allocation_op, symbols will be changed inside this function.
-    # So i'll copy it
-    
+
     print 'Starting backtest...'
     print
     
