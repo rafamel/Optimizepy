@@ -13,10 +13,11 @@ Tests all possible portfolio allocations and determines which one had the best S
 	+ numpy
 	+ pandas
 
-## def allocation_op(symbols, exchange, allow_short, days = None, filter_symbols = 5, data_allocate = None, dt_start = None, dt_end = None)
+## allocation_op(symbols, exchange, allow_short, days = None, filter_symbols = 5, data_allocate = None, dt_start = None, dt_end = None)
+**File: allocation_sharpe_optimizer.py**
 
 > Tests all possible portfolio allocations for **symbols** and determines which one had the **best Sharpe ratio** for the period [today - *days*] to today _or_ from *dt_start* to *dt_end*.
-> **File: allocation_sharpe_optimizer.py**
+
 
 - symbols (list): 
 	+ ['EURUSD', 'EURCAD']
@@ -42,19 +43,20 @@ Tests all possible portfolio allocations and determines which one had the best S
 - dt_start and dt_end: They might be used **instead** of *days* to compute the best allocation for some range of dates ending in the past (not for the day the computation is made, but before).
 
 ## backtester(symbols, exchange, allow_short, days_backwards, days_forward, filter_symbols = 5)
+**File: backtester.py**
 
-> Backtest of allocation_op. It will use all historical data available for the symbols.
-> It will save the the cumulative returns, the returns per period, and the sharpe ratio of the portfolio, in a csv file.
-> **File: backtester.py**
+> Backtest of allocation_op. It will use all historical data available for the symbols. It will save the the cumulative returns, the returns per period, and the sharpe ratio of the portfolio, in a csv file.
+
 
 - days_backwards (integer): Number of days to be passed to allocation_op
 
 - days_forward (integer): Number of days the investment made in the symbols and allocations computed for days_backwards will be held. At the end of this period, a new computation would be done (for 'present day - days_backards' to 'present day') taking this moment as the new 'present day', which would start a new investment to be hold, again for 'days_forward' days.
 
 ## simulate(na_price_nodate, dt_start, dt_end, symbols, portf_allocation)
+**File: simulate_portfolio_allocation.py**
 
 > Returns sharpe ratio and returns for some portfolio.
-> **File: simulate_portfolio_allocation.py**
+
 
 - na_price_nodate (numpy array): Same as *data_allocate* but without the date on the first field.
 
@@ -75,7 +77,7 @@ Tests all possible portfolio allocations and determines which one had the best S
 
 ## To-do (future):
 
-- "Events" detection -> Probably better to do in NinjaTrader or MT4?
+- "Events" detection -> Better to use trading platform (not python)?
 
 - Drawdown -> Compute max drawdown for the analized period and put stop loss for investment
 
