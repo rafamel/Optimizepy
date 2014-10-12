@@ -13,8 +13,7 @@ qdl_apikey = ""
 
 
 def get_data(symbols, exchange, dt_start = None, dt_end = None):
-    ''' symbols = List of currencies. Ex. ['EURUSD', 'EURCAD'] 
-    days = number of days'''
+    ''' symbols = List of currencies. Ex. ['EURUSD', 'EURCAD'] '''
     
     # Check for API key
     if qdl_apikey == "":
