@@ -77,6 +77,8 @@ Tests all possible portfolio allocations and determines which one had the best S
 
 ## To-do (future):
 
+- Convex optimization (CVXOPT)
+
 - "Events" detection -> Better to use trading platform (not python)?
 
 - Drawdown -> Compute max drawdown for the analized period and put stop loss for investment
