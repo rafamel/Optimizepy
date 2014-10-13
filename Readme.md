@@ -1,6 +1,6 @@
 # Optimizepy
 
-Tests all possible portfolio allocations and determines which one had the best Sharpe ratio.
+Tests all possible portfolio allocations and determines which one had the best Sharpe ratio. Does not use convex optimization; tries all possible allocations within some 'step' size (0.1, predefined).
 
 ## Data
 
