@@ -8,7 +8,7 @@ Tests all possible portfolio allocations and determines which one had the best S
 
 ## Dependencies
 
-- Python:
+- Python 2.7:
 	+ quandl
 	+ numpy
 	+ pandas
