@@ -40,6 +40,10 @@ def get_data(symbols, exchange, dt_start = None, dt_end = None):
     elif exchange == 'mc':
         prefix = 'YAHOO/MC_'
         sufix_column = '.4'
+    #NASDAQ
+    elif exchange == 'nasdaq':
+        prefix = 'GOOG/NASDAQ_'
+        sufix_column = '.4'
     else:
         raise Exception("No valid exchange/market entered.")
     
@@ -51,25 +55,28 @@ def get_data(symbols, exchange, dt_start = None, dt_end = None):
     
     quandl_data = Quandl.get(mod_symbols, collapse="daily", trim_start=dt_start, trim_end=dt_end, authtoken=qdl_apikey)
 
-    #Needed to save dates in array
+    #Needed to save dates in dataframe
     quandl_data = quandl_data.reset_index()
-    
-    #Saving in array
-    quandl_data = np.asarray(quandl_data)
     
     # Checking none of the columns is empty (error in symbols)
     i_num = 0
-    for q_num in quandl_data[-1,1:]:
+    for q_num in quandl_data.iloc[-1,1:]:
         if math.isnan(q_num):
             raise Exception("There was an error getting symbols data. No data received for "+symbols[i_num])
         i_num += 1
     
     #Filling nans
-    pd_quandl_data = pd.DataFrame(quandl_data[:,1:])
+    pd_quandl_data = pd.DataFrame(quandl_data.iloc[:,1:])
     pd_quandl_data = pd_quandl_data.fillna(method='ffill')
     pd_quandl_data = pd_quandl_data.fillna(method='bfill')
     pd_quandl_data = pd_quandl_data.fillna(1.0)
-    quandl_data[:,1:] = np.asarray(pd_quandl_data)
+    quandl_data.iloc[:,1:] = pd_quandl_data
+    
+    #Columns to original symbols
+    quandl_data.columns = ['Date']+symbols
+    
+    # Return as np array because it's what the rest of the system expect. This should be changed to maintain the Pandas Dataframe.
+    quandl_data = np.asarray(quandl_data)
     
     return quandl_data
 
@@ -83,4 +90,4 @@ def get_data(symbols, exchange, dt_start = None, dt_end = None):
 #dt_end = dt.datetime(2011, 12, 31)
 
 
-#print data_fx(symbols, exchange, dt_start, dt_end)
+#print get_data(symbols, exchange, dt_start, dt_end)
